@@ -7,6 +7,7 @@ export declare global{
             Home: undefined;
             Cart: undefined;
             PaymentScreen: undefined;
+            Perfil: undefined;
         }
     }
 }

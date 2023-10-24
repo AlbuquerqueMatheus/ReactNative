@@ -26,7 +26,7 @@ const Login = () => {
         <TitleLogin>Login</TitleLogin>
         <Input value={email} margin="10px" onChange={handleOnChangeEmail} />
         <Input value={password} margin="10px" onChange={handleOnChangePassword} />
-        <Button title="ENTRAR" margin="10px" onPress={changeScreen}  />
+        <Button title="ENTRAR" margin="10px" onPress={handleOnPress}  />
       </ContainerPlugin>
     </View>
   );

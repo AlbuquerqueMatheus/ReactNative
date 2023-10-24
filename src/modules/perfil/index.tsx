@@ -1,22 +1,21 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import styles from './stylesUser';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
-const PaymentScreen = () => {
-
-    const navigation = useNavigation();
-    function changeScreen() {
-        navigation.goBack();
-    }
+const UserProfile = () => {
+    const { user } = useSelector((state: RootState) => state.userReducer.user)
+    console.log(user)
     return (
-        <View>
-            <Text>Insira os detalhes do pagamento:</Text>
-            <TextInput placeholder="Número do Cartão" />
-            <TextInput placeholder="Data de Validade" />
-            <TextInput placeholder="CVV" />
-            <Button title="Pagar" />
+        <View style={styles.container}>
+            <Text style={styles.username}>Nome: {user.name}</Text>
+            <Text style={styles.email}>E-mail: {user.email}</Text>
+            <Text style={styles.email}>CPF: {user.cpf}</Text>
+            <Text style={styles.email}>ID: {user.id}</Text>
+            <Text style={styles.email}>Telefone: {user.phone}</Text>
         </View>
     );
 }
 
-export default PaymentScreen;
+export default UserProfile;
