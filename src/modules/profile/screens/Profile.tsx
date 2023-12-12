@@ -1,26 +1,102 @@
-import { View, Text } from "react-native";
-import { Card } from "../../../shared/components/Card";
-import Button from "../../../shared/components/button/Button";
-import Perfil from "../../Perfil";
-import { useNavigation } from "@react-navigation/native";
+import {View, FlatList} from 'react-native';
+import {Card} from '../../../shared/components/card';
+import {useNavigation} from '@react-navigation/native';
+import {useEffect, useState} from 'react';
+import Button from '../../../shared/components/button/Button';
+import {getItemStorage} from '../../../shared/storageProxy';
+import axios from 'axios';
+import {AUTORIZATION_KEY} from '../../../shared/autorizationConstant';
+
+type cardInfo = {
+  category: {id: number; name: string};
+  diameter: number;
+  height: number;
+  id: number;
+  image: string;
+  length: number;
+  name: string;
+  price: number;
+  weight: number;
+  width: number;
+};
+
+// const itens: cardInfo[] = [
+//     { id: '1', title: 'lamp 1', image: require("../../../assets/R.jpg"), price: 'R$ 9,90', ofer: 'R$ 29,99' },
+//     { id: '2', title: 'lamp 2', image: require("../../../assets/light.png"), price: 'R$ 9,90', ofer: 'R$ 34,99' },
+//     { id: '3', title: 'lamp 3', image: require("../../../assets/R.jpg"), price: 'R$ 9,90', ofer: 'R$ 19,99' },
+//     { id: '4', title: 'lamp 4', image: require("../../../assets/light.png"), price: 'R$ 9,90', ofer: 'R$ 15,99' },
+
+// ]
 
 const Profile = () => {
+  const [products, setproducts] = useState<cardInfo[]>([]);
+  // const routeDetails = useRoute();
+  const navigation = useNavigation();
+  function changeScreen() {
+    navigation.navigate('View');
+  }
+  function addProd() {
+    navigation.navigate('Add');
+  }
 
-    const cel = require('../../../../assets/images-_1_.jpg')
+  function perfil() {
+    navigation.navigate('Perfil');
+  }
 
-    const navigation = useNavigation();
+  async function getAllProducts() {
+    const token = await getItemStorage(AUTORIZATION_KEY);
+    if (!token) {
+      return;
+    }
 
-    const data = [
-        {title: "Celular 1", price: "2500", offer:"1800", img:cel },
-    ]
+    await axios
+      .get('http://192.168.137.194:8080/product', {
+        headers: {
+          Authorization: token,
+          'Contente-Type': 'aplication/json',
+        },
+      })
+      .then(res => setproducts(res.data))
+      .catch(err => console.log(err));
+  }
 
-    return(
-        <View>
-            <Button title="Perfil" margin="10px" onPress={()=>navigation.navigate("Perfil")}/>
-            <Card title={data[0].title} price={data[0].price} offer={data[0].offer} img={data[0].img}></Card>
-            <Card title="Celular 2" price="2000" offer="1800" img={cel}></Card>
-        </View>
-    )
-}
+  useEffect(() => {
+    getAllProducts();
+  }, [products]);
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16,
+      }}>
+      <Button title="Perfil" onPress={perfil} style={{marginBottom: 10}} />
+      <Button
+        title="Adicionar Produto"
+        onPress={addProd}
+        style={{marginBottom: 10}}
+      />
+      <FlatList
+        style={{width: '100%'}}
+        ItemSeparatorComponent={() => (
+          <View style={{backgroundColor: '#767676', height: 1}} />
+        )}
+        data={products}
+        renderItem={({item}) => (
+          <Card
+            title={item.name}
+            image={require('../../../assets/R.jpg')}
+            price={item.price.toString()}
+            ofer={'0'}
+            onPress={changeScreen}
+          />
+        )}
+      />
+      {/* <Card onPress={changeScreen}></Card> */}
+    </View>
+  );
+};
 
 export default Profile;

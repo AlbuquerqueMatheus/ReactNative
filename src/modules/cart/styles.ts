@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
-import { Platform, StatusBar } from 'react-native'
+import {StyleSheet} from 'react-native';
+import {Platform, StatusBar} from 'react-native';
+// import { getBottomInset } from "rn-iphone-helper";
 
 const isAndroid = Platform.OS === 'android';
 
@@ -18,29 +19,29 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
     borderBottomWidth: 1,
-    borderBottomColor: '#E6E5E5'
+    borderBottomColor: '#E6E5E5',
   },
   headerTitle: {
     fontWeight: 'bold',
     fontSize: 24,
-    color:  '#403937'
+    color: '#403937',
   },
   backButton: {
     position: 'absolute',
     left: 32,
-    top: 30
+    top: 30,
   },
   body: {
     flex: 1,
   },
   emptyContainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     gap: 12,
   },
   emptyText: {
-    color: '#8D8686'
+    color: '#8D8686',
   },
   productCardContainer: {
     paddingVertical: 16,
@@ -51,12 +52,12 @@ export const styles = StyleSheet.create({
   imageProduct: {
     width: 78,
     height: 64,
-    resizeMode: "contain",
+    resizeMode: 'contain',
     borderRadius: 6,
     // backgroundColor: 'black'
   },
   productDetails: {
-    flex: 1
+    flex: 1,
   },
   productTitleContainer: {
     flexDirection: 'row',
@@ -73,7 +74,7 @@ export const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row',
-    gap: 8
+    gap: 8,
   },
   counter: {
     flexDirection: 'row',
@@ -83,7 +84,7 @@ export const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderRadius: 6,
     padding: 8,
-    width: 100
+    width: 100,
   },
   addButton: {
     height: 20,
@@ -91,7 +92,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   decrementButton: {
     height: 20,
@@ -99,14 +100,14 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   trashButton: {
     backgroundColor: '#EDEDED',
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 8,
-    borderRadius: 6
+    borderRadius: 6,
   },
   footer: {
     height: 160,
@@ -117,40 +118,37 @@ export const styles = StyleSheet.create({
     marginBottom: 34,
     paddingTop: 28,
     paddingHorizontal: 32,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   footerHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   footerTitle: {
-    color: '#403937'
+    color: '#403937',
   },
   totalCart: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: '#403937'
+    color: '#403937',
   },
   btnConfirmation: {
     width: '100%',
     paddingVertical: 12,
     paddingHorizontal: 8,
     backgroundColor: '#C47F17',
-    borderRadius: 6
+    borderRadius: 6,
   },
   bntConfirmationText: {
-      fontSize: 14,
-      color: '#FFF',
-      fontWeight: "bold",
-      textAlign: "center"
-  },
-  icon:{
     fontSize: 14,
-    },
-  divider:{
+    color: '#FFF',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  divider: {
     width: '100%',
     height: 1,
-    backgroundColor:'#E6E5E5'
-  }
+    backgroundColor: '#e6e5e5',
+  },
 });

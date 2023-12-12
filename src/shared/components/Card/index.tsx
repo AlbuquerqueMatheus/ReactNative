@@ -1,29 +1,35 @@
-import { Float } from "react-native/Libraries/Types/CodegenTypes";
-import { CardContainer, CardTitle, Content, FavoriteButton, ImageCard, Offer, Price } from "./styles";
-import { useNavigation } from "@react-navigation/native";
-import Icon from 'react-native-vector-icons/Feather'
-import { ImageProps } from "react-native";
+import {
+  CardContainer,
+  CardImage,
+  Contant,
+  Favorite,
+  Offer,
+  Price,
+  Title,
+} from './style';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {ImageProps, TouchableOpacityProps} from 'react-native';
 
-interface PropsCard {
-    title: String;
-    price: String;
-    offer: String;
-    img: ImageProps["source"];
+interface CardProps extends TouchableOpacityProps {
+  id?: string;
+  title: string;
+  image: ImageProps['source'];
+  price: string;
+  ofer: string;
 }
-export function Card(props: PropsCard){
-    const navigation = useNavigation();
-    const goToCart = () => {navigation.navigate('Home');}
-    return(
-        <CardContainer onPress={goToCart}>
-            <ImageCard source={props.img}/>
-            <Content>
-                <CardTitle>{props.title}</CardTitle>
-                <Price>{props.price}</Price>
-                <Offer>{props.offer}</Offer>
-            </Content>
-            <FavoriteButton>
-                <Icon name="home" size={16} color={"#616161"} />
-            </FavoriteButton>
-        </CardContainer>
-    );
+
+export function Card({title, image, price, ofer, ...props}: CardProps) {
+  return (
+    <CardContainer {...props}>
+      <CardImage source={image} />
+      <Contant>
+        <Title>{title}</Title>
+        <Price>{price}</Price>
+        <Offer>{ofer}</Offer>
+        <Favorite>
+          <Icon name="home" size={16} color="#928374" />
+        </Favorite>
+      </Contant>
+    </CardContainer>
+  );
 }

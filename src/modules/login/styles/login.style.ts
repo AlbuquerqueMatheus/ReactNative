@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {styled} from 'styled-components/native';
+import { styled } from 'styled-components/native';
 
 export const ContainerPlugin = styled.View`
   height: 100%;

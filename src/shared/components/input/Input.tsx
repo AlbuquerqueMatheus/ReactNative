@@ -7,7 +7,7 @@ interface InputProps extends TextInputProps {
     margin?: string
 }
 
-const Input = ({margin, ...props}: InputProps) => {
+const Input = ({ margin, ...props }: InputProps) => {
     return (
         <ContainerInput margin={margin} {...props} />
     );
